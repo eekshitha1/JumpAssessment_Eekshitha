@@ -9,19 +9,19 @@ function App() {
   const previewRef = useRef();
 
   // Handle copying the rendered HTML to clipboard
-  const handleCopy = async () => {
-    const htmlContent = previewRef.current.innerHTML;
-    try {
-      await navigator.clipboard.write([
-        new ClipboardItem({
-          'text/html': new Blob([htmlContent], { type: 'text/html' }),
-        }),
-      ]);
-      alert('Rich text copied to clipboard!');
-    } catch (err) {
-      alert('Failed to copy rich text: ' + err);
-    }
-  };
+  // Handle copying the rendered markdown text to clipboard (plain text)
+const handleCopy = async () => {
+  const markdownContent = markdown; // Get the original markdown text
+
+  try {
+    // Copy the plain text (markdown content) to the clipboard
+    await navigator.clipboard.writeText(markdownContent);
+    alert('Markdown copied to clipboard!');
+  } catch (err) {
+    alert('Failed to copy markdown text: ' + err);
+  }
+};
+
 
   // Handle exporting the content as PDF
   const handleExport = () => {
